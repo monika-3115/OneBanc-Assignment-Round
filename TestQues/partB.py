@@ -1,0 +1,54 @@
+# strength check using demographics
+
+import datetime
+
+common_pins = { 
+    "0000", "0011", "1111", "1122", "1212", "0101", "1010", "2233", "3344", "4455", "5566", "7788", "8899", "1234", "4321", "9999", "2222", "3333", "4444", "5555", "6666", "7777", "8888", "9999",
+    "123456", "654321", "111111", "000000", "121212", "112233", "111222", "222111", "222333", "232323", "123123", "456456", "789789", "444444"
+}
+
+def is_commonpin(pin: str) -> bool:
+    return pin in common_pins
+
+def date_pins(datestr: str) -> set:
+    try:
+        date = datetime.datetime.strptime(datestr, "%d-%m-%Y")
+    except ValueError:
+        return set()
+    
+    dd = f"{date.day:02d}"
+    mm = f"{date.month:02d}"
+    yyyy = f"{date.year:04d}"
+    yy1 = yyyy[2:]
+    yy2 = yyyy[:2]
+    return {
+        # 4-digit combinations
+        dd+dd, mm+mm, dd+mm, mm+dd, dd+yy1, mm+yy1, yy1+mm, yy1+dd, yy1+yy2, yy2+yy1, yy1+yy1, yy2+yy2, dd+yy2, mm+yy2, yy2+mm, yy2+dd,
+        # 6-digit combinations
+        dd+yyyy, yyyy+dd, mm+yyyy, yyyy+mm, dd+mm+yy1, dd+mm+yy2, mm+dd+yy1, mm+dd+yy2, dd+yy1+mm, dd+yy2+mm, mm+yy1+dd, mm+yy2+dd, yy1+dd+mm, yy2+dd+mm,
+        yy1+yyyy, yy2+yyyy, yyyy+yy1, yyyy+yy2
+    }
+
+def check_demos(pin: str, dob = None, dob_spouse = None, anniversary = None) -> list:
+    reasons = []
+    if dob and pin in date_pins(dob):
+        reasons.append("DEMOGRAPHIC_DOB_SELF")
+    if dob_spouse and pin in date_pins(dob_spouse):
+        reasons.append("DEMOGRAPHIC_DOB_SPOUSE")
+    if anniversary and pin in date_pins(anniversary):
+        reasons.append("DEMOGRAPHIC_ANNIVERSARY")
+    return reasons
+
+def strength_check(pin: str, dob = None, dob_spouse = None, anniversary = None) -> str:
+    if is_commonpin(pin) or check_demos(pin, dob, dob_spouse, anniversary):
+        return "WEAK"
+    return "STRONG"
+
+# Input
+
+pin = input("Enter the pin:").strip()
+dob = input("Enter the date of birth (dd-mm-yyyy) [optional]:").strip()
+dob_spouse = input("Enter the spouse's date of birth (dd-mm-yyyy) [optional]:").strip()
+anniversary = input("Enter the anniversary date (dd-mm-yyyy) [optional]:").strip()
+res = strength_check(pin, dob, dob_spouse, anniversary)
+print(f"PIN Strength : {res}")

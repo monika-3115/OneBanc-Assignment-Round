@@ -1,0 +1,22 @@
+[
+    {"pin": "1234", "expected": ["COMMONLY_USED"]},
+    {"pin": "4321", "expected": ["COMMONLY_USED"]},
+    {"pin": "0201", "dob": "02-01-1998", "expected": ["DEMOGRAPHIC_DOB_SELF"]},
+    {"pin": "9802", "dob": "02-01-1998", "expected": ["DEMOGRAPHIC_DOB_SELF"]},
+    {"pin": "123456", "expected": ["COMMONLY_USED"]},
+    {"pin": "2000", "expected": ["COMMONLY_USED"]},
+    {"pin": "1201", "dob_spouse": "12-01-1992", "expected": ["DEMOGRAPHIC_DOB_SPOUSE"]},
+    {"pin": "0201", "dob_spouse": "02-01-1998", "expected": ["DEMOGRAPHIC_DOB_SPOUSE"]},
+    {"pin": "3112", "anniversary": "31-12-2020", "expected": ["DEMOGRAPHIC_ANNIVERSARY"]},
+    {"pin": "2012", "anniversary": "31-12-2020", "expected": ["DEMOGRAPHIC_ANNIVERSARY"]},
+    {"pin": "0000", "expected": ["COMMONLY_USED"]},
+    {"pin": "1010", "expected": ["COMMONLY_USED"]},
+    {"pin": "020119", "dob": "02-01-1998", "expected": ["DEMOGRAPHIC_DOB_SELF"]},
+    {"pin": "190102", "dob": "02-01-1998", "expected": ["DEMOGRAPHIC_DOB_SELF"]},
+    {"pin": "1308", "dob_spouse": "13-08-1995", "expected": ["DEMOGRAPHIC_DOB_SPOUSE"]},
+    {"pin": "0201", "dob": "02-01-1998", "dob_spouse": "02-01-1998", "expected": ["DEMOGRAPHIC_DOB_SELF", "DEMOGRAPHIC_DOB_SPOUSE"]},
+    {"pin": "2012", "dob": "02-01-1998", "anniversary": "20-12-2020", "expected": ["DEMOGRAPHIC_ANNIVERSARY"]},
+    {"pin": "9999999", "expected": ["INVALID_PIN_FORMAT"]},
+    {"pin": "0932", "expected": []},
+    {"pin": "9801", "expected": []}
+]
