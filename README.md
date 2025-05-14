@@ -6,9 +6,9 @@ As part of my assignment round, this project evaluates the strength of a user's 
 
 📄***About Repository***
 
--> TestQues is a folder where the code snippets of the questions given.
--> main.py file is the complete version of the problem statement given.
--> To run the test cases I used a JSON file of sample test cases and called it in test.py file.
+*  TestQues is a folder where the code snippets of the questions given.
+*  main.py file is the complete version of the problem statement given.
+*  To run the test cases I used a JSON file of sample test cases and called it in test.py file.
 
 ---
 
