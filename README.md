@@ -46,4 +46,6 @@ As part of my assignment round, this project evaluates the strength of a user's 
     * for main file:
                     python main.py
     * for test cases:
+            ! Please run :  chcp 65001 in your command prompt to get the test case Colors.
+            Then run:
                     python test.py
